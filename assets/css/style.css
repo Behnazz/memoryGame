@@ -1,0 +1,10 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(8, 10rem);
+  grid-template-rows: repeat(4, 10rem);
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid red;
+}
