@@ -1,2 +1,2 @@
 # memoryGame
-a card memory game
+a memory card game
