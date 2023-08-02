@@ -1,0 +1,20 @@
+{
+  "name": "memorygame",
+  "version": "1.0.0",
+  "description": "a card memeory game ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Behnazz/memoryGame.git"
+  },
+  "author": "Bee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Behnazz/memoryGame/issues"
+  },
+  "homepage": "https://github.com/Behnazz/memoryGame#readme"
+}
