@@ -1,4 +1,4 @@
-.cardContainer {
+#gameBoard {
   display: grid;
   grid-template-columns: repeat(8, 10rem);
   grid-template-rows: repeat(4, 10rem);
@@ -8,4 +8,7 @@
 .card {
   border: 1px solid red;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
