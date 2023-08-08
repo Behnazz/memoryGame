@@ -6,9 +6,21 @@
 }
 
 .card {
-  border: 1px solid red;
+  border: 1px solid black;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flipped {
+  border: 5px solid rgb(255, 196, 0);
+}
+
+.matched {
+  border: 5px solid rgb(55, 241, 55);
+}
+
+.notMatched {
+  border: 5px solid red;
 }

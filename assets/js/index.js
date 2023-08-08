@@ -9,8 +9,9 @@ let suffledCards = cards
   .map((element) => element.value);
 5;
 
-const gameBoard = document.getElementById('gameBoard'); //create game board element
+let flippedCards = []; //create array for flipped cards
 
+const gameBoard = document.getElementById('gameBoard'); //create game board element
 //create cards
 function createCards() {
   for (let i = 0; i < suffledCards.length; i++) {
@@ -19,6 +20,34 @@ function createCards() {
     card.setAttribute('data-card', suffledCards[i]); //add data attribute
     card.textContent = suffledCards[i]; //add text
     gameBoard.appendChild(card); //append to game board
+
+    gameBoard.addEventListener('click', flipCard); //add event listener
   }
 }
+
+function flipCard(event) {
+  const clickedCard = event.target;
+  clickedCard.classList.add('flipped');
+  if (flippedCards.length < 2) {
+    flippedCards.push(clickedCard);
+  }
+  if (flippedCards.length === 2) {
+    checkMatch();
+  }
+}
+
+function checkMatch() {
+  let card1 = flippedCards[0];
+  let card2 = flippedCards[1];
+  if (card1.getAttribute('data-card') === card2.getAttribute('data-card')) {
+    card1.classList.add('matched');
+    card2.classList.add('matched');
+    flippedCards = [];
+  } else {
+    card1.classList.add('notMatched');
+    card2.classList.add('notMatched');
+    flippedCards = [];
+  }
+}
+
 createCards();
