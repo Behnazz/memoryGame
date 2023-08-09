@@ -25,28 +25,56 @@ function createCards() {
   }
 }
 
+//flip card function
 function flipCard(event) {
   const clickedCard = event.target;
-  clickedCard.classList.add('flipped');
-  if (flippedCards.length < 2) {
-    flippedCards.push(clickedCard);
-  }
-  if (flippedCards.length === 2) {
-    checkMatch();
+
+  //make sure only two cards can be flipped at a time and it is not already have a matched class
+  if (flippedCards.length < 2 && !clickedCard.classList.contains('matched')) {
+    // to make sure if it has already selected then deselect it
+    if (clickedCard.classList.contains('flipped')) {
+      // If the card is already flipped, de-select it
+      clickedCard.classList.remove('flipped');
+      //check the index of the clicked card in the flipppedCards arry
+      const index = flippedCards.indexOf(clickedCard);
+      //update the flippedCards array to deselect the same card
+      if (index !== -1) {
+        flippedCards.splice(index, 1);
+      }
+    } else {
+      // If the card is not flipped, mark it as flipped
+      clickedCard.classList.add('flipped');
+      flippedCards.push(clickedCard);
+      if (flippedCards.length === 2) {
+        checkMatch();
+      }
+    }
   }
 }
 
 function checkMatch() {
-  let card1 = flippedCards[0];
-  let card2 = flippedCards[1];
+ const [card1, card2] = flippedCards;
   if (card1.getAttribute('data-card') === card2.getAttribute('data-card')) {
     card1.classList.add('matched');
     card2.classList.add('matched');
-    flippedCards = [];
-  } else {
+    setTimeout(() => {
+      card1.setAttibute('aria-hidden', true);
+      card1.setAttibute('aria-hidden', true);
+
+      card1.classList.remove('flipped');
+      card2.classList.remove('flipped');
+      flippedCards = []; // after a comparison it should be cleared for the next comparison
+    }, 1000);
+  } else if (
+    card1.getAttribute('data-card') !== card2.getAttribute('data-card')
+  ) {
     card1.classList.add('notMatched');
     card2.classList.add('notMatched');
-    flippedCards = [];
+    setTimeout(() => {
+      card1.classList.remove('flipped', 'notMatched');
+      card2.classList.remove('flipped', 'notMatched');
+      flippedCards = []; // after a comparison it should be cleared for the next comparison
+    }, 1000);
   }
 }
 

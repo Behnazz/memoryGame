@@ -24,3 +24,8 @@
 .notMatched {
   border: 5px solid red;
 }
+
+.card[aria-hidden='true'] {
+  opacity: 0;
+  display: none;
+}
