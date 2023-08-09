@@ -54,6 +54,7 @@ function flipCard(event) {
 
 function checkMatch() {
   const [card1, card2] = flippedCards;
+  // This block handles matching cards
   if (card1.getAttribute('data-card') === card2.getAttribute('data-card')) {
     card1.classList.add('matched');
     card2.classList.add('matched');
