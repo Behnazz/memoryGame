@@ -53,19 +53,20 @@ function flipCard(event) {
 }
 
 function checkMatch() {
- const [card1, card2] = flippedCards;
+  const [card1, card2] = flippedCards;
   if (card1.getAttribute('data-card') === card2.getAttribute('data-card')) {
     card1.classList.add('matched');
     card2.classList.add('matched');
     setTimeout(() => {
-      card1.setAttibute('aria-hidden', true);
-      card1.setAttibute('aria-hidden', true);
+      card1.setAttribute('aria-hidden', true);
+      card2.setAttribute('aria-hidden', true);
 
       card1.classList.remove('flipped');
       card2.classList.remove('flipped');
       flippedCards = []; // after a comparison it should be cleared for the next comparison
     }, 1000);
   } else if (
+    // This block handles non-matching cards
     card1.getAttribute('data-card') !== card2.getAttribute('data-card')
   ) {
     card1.classList.add('notMatched');
