@@ -28,3 +28,21 @@
 .card[aria-hidden='true'] {
   opacity: 0;
 }
+
+.winningMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid blueviolet;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}

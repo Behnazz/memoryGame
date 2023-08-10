@@ -65,6 +65,10 @@ function checkMatch() {
       card1.classList.remove('flipped');
       card2.classList.remove('flipped');
       flippedCards = []; // after a comparison it should be cleared for the next comparison
+      // check if all cards are matched and hidden
+      if (document.querySelectorAll('.matched').length === 32) {
+        showWinningMessage();
+      }
     }, 1000);
   } else if (
     // This block handles non-matching cards
@@ -78,6 +82,18 @@ function checkMatch() {
       flippedCards = []; // after a comparison it should be cleared for the next comparison
     }, 1000);
   }
+}
+
+function showWinningMessage() {
+  const winningMessage = document.createElement('div');
+  winningMessage.classList.add('winningMessage');
+  winningMessage.innerHTML = `<h1>You Won!</h1>
+  <button class="playAgain">Play Again</button>`;
+  gameBoard.appendChild(winningMessage);
+  const playAgain = document.querySelector('.playAgain');
+  playAgain.addEventListener('click', () => {
+    location.reload();
+  });
 }
 
 createCards();
