@@ -1,3 +1,6 @@
+//playing game started
+let gameInProgress = true;
+
 //Fisher-Yates shuffle algorithm
 const cards = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 16, 15, 14, 13, 12, 11,
@@ -27,26 +30,29 @@ function createCards() {
 
 //flip card function
 function flipCard(event) {
-  const clickedCard = event.target;
+  //if the game is not in progress then return
+  if (gameInProgress) {
+    const clickedCard = event.target;
 
-  //make sure only two cards can be flipped at a time and it is not already have a matched class
-  if (flippedCards.length < 2 && !clickedCard.classList.contains('matched')) {
-    // to make sure if it has already selected then deselect it
-    if (clickedCard.classList.contains('flipped')) {
-      // If the card is already flipped, de-select it
-      clickedCard.classList.remove('flipped');
-      //check the index of the clicked card in the flipppedCards arry
-      const index = flippedCards.indexOf(clickedCard);
-      //update the flippedCards array to deselect the same card
-      if (index !== -1) {
-        flippedCards.splice(index, 1);
-      }
-    } else {
-      // If the card is not flipped, mark it as flipped
-      clickedCard.classList.add('flipped');
-      flippedCards.push(clickedCard);
-      if (flippedCards.length === 2) {
-        checkMatch();
+    //make sure only two cards can be flipped at a time and it is not already have a matched class
+    if (flippedCards.length < 2 && !clickedCard.classList.contains('matched')) {
+      // to make sure if it has already selected then deselect it
+      if (clickedCard.classList.contains('flipped')) {
+        // If the card is already flipped, de-select it
+        clickedCard.classList.remove('flipped');
+        //check the index of the clicked card in the flipppedCards arry
+        const index = flippedCards.indexOf(clickedCard);
+        //update the flippedCards array to deselect the same card
+        if (index !== -1) {
+          flippedCards.splice(index, 1);
+        }
+      } else {
+        // If the card is not flipped, mark it as flipped
+        clickedCard.classList.add('flipped');
+        flippedCards.push(clickedCard);
+        if (flippedCards.length === 2) {
+          checkMatch();
+        }
       }
     }
   }
@@ -83,15 +89,18 @@ function checkMatch() {
     }, 1000);
   }
 }
-
+//show winning message
 function showWinningMessage() {
-  const winningMessage = document.createElement('div');
-  winningMessage.classList.add('winningMessage');
-  winningMessage.innerHTML = `<h1>You Won!</h1>
-  <button class="playAgain">Play Again</button>`;
-  gameBoard.appendChild(winningMessage);
-  const playAgain = document.querySelector('.playAgain');
+  gameInProgress = false;
+  //show modal
+  const winningMessage = document.getElementById('winningMessage');
+  winningMessage.showModal();
+
+  //paly again button
+  constPlayAgainButton = document.getElementById('playAgain');
   playAgain.addEventListener('click', () => {
+    winningMessage.close();
+    //reset game
     location.reload();
   });
 }
