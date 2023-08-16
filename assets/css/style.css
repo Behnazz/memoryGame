@@ -1,4 +1,4 @@
-#gameBoard {
+.gameBoard {
   display: grid;
   grid-template-columns: repeat(8, 10rem);
   grid-template-rows: repeat(4, 10rem);
@@ -29,20 +29,13 @@
   opacity: 0;
 }
 
-#winningMessage {
+.winningMessageModal {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 3px solid blueviolet;
   align-items: center;
   width: 300px;
   height: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  text-align: center;
+  border: 3px solid blueviolet;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
