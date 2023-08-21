@@ -7,15 +7,23 @@
     <!-- css-->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body>
+  <body cz-shortcut-listen="true">
     <header>
       <section class="headerTitleContainer">
-        <h1>A card game!</h1>
+        <h1>
+          A Memory Card Game!
+        </h1>
       </section>
     </header>
     <main>
       <!--card container-->
-      <section id="gameBoard" class="gameBoard"></section>
+      <div
+        id="gameBoard"
+        class="gameBoardContainer"
+        role="listbox"
+        aria-label="find and select the matching cards!"
+        aria-multiselectable="true"
+      ></div>
     </main>
 
     <!-- dialog modal for winning-->

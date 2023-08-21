@@ -1,4 +1,4 @@
-.gameBoard {
+.gameBoardContainer {
   display: grid;
   grid-template-columns: repeat(8, 10rem);
   grid-template-rows: repeat(4, 10rem);
