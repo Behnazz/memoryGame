@@ -25,9 +25,16 @@ function createCards() {
     card.setAttribute('role', 'option'); //add ARIA role for each card
     card.setAttribute('aria-hidden', 'false');
     card.setAttribute('tabindex', '0'); // tab key to cycle through the cards
+    card.setAttribute('aria-pressed', 'false');
     gameBoard.appendChild(card); //append to game board
 
     card.addEventListener('click', flipCard); //add event listener
+    //keyboard card click listener
+    card.addEventListener('keydown', (event) => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        flipCard(event);
+      }
+    });
   }
 }
 
@@ -57,6 +64,19 @@ function flipCard(event) {
         clickedCard.setAttribute('aria-selected', 'true');
         if (flippedCards.length === 2) {
           checkMatch();
+        }
+      }
+    }
+    if (event.key === '' || event.key === 'Enter') {
+      event.preventDefault(); // prevent default key behaviour
+      if (!clickedCard.classList.contains('matched')) {
+        if (clickedCard.classList.toggle('flipped')) {
+          flippedCards.push(clickedCard);
+          clickedCard.setAttribute('aria-selected', 'true');
+          clickedCard.setAttribute('aria-press', 'true');
+          if (flippedCards.length === 2) {
+            checkMatch();
+          }
         }
       }
     }
@@ -90,6 +110,8 @@ function checkMatch() {
     setTimeout(() => {
       card1.setAttribute('aria-selected', 'false');
       card2.setAttribute('aria-selected', 'false');
+      card1.setAttribute('aria-pressed', 'false');
+      card2.setAttribute('aria-pressed', 'false');
       card1.setAttribute('aria-hidden', 'false');
       card2.setAttribute('aria-hidden', 'false');
       card1.classList.remove('flipped', 'notMatched');
