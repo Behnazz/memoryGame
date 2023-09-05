@@ -1,5 +1,5 @@
 //playing game started
-let gameInProgress = true;
+const gameInProgress = true;
 
 //Fisher-Yates shuffle algorithm
 const cards = [
@@ -18,7 +18,7 @@ const gameBoard = document.getElementById('gameBoard'); //create game board elem
 //create cards
 function createCards() {
   for (let i = 0; i < shuffledCards.length; i++) {
-    const card = document.createElement('div'); //make a div
+    const card = document.createElement('button'); //make a div
     card.classList.add('card'); //add class
     card.setAttribute('data-card', shuffledCards[i]); //add data attribute
     card.textContent = shuffledCards[i]; //add text
